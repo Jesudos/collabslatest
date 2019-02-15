@@ -1,0 +1,68 @@
+.pcfFormTitle
+{
+    color: #333333;
+    font-weight: 750;
+}
+.addEventTitle
+{
+    color: #333333;
+    font-weight: 500;
+}
+
+.noBorder
+{
+    background-color: rgb(247, 247, 247);
+  border: 1px;
+  color: #333333;
+  padding: 8px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.selectStyle{
+    background-color: white;
+    float:left;
+    border: none;
+    color: #1890FF;
+    text-decoration: underline;
+    text-decoration-color:  #1890FF;
+    margin-left: 15px;
+}
+
+.pcfFormBtn{
+    font-weight: 550;
+}
+
+.pcfFormBtn:hover {
+    background-color: rgb(247, 247, 247);
+    border-color: blue;
+  }
+
+.pcfformIcon{
+    font-size:60px;
+    color:red;
+}
+
+.pcfFormSubmitCheckbox{
+    width: 20px;
+    height: 15px;
+    margin: 20px;
+}
+
+.pcfFormSubmitText{
+    font-size: 18px;
+    margin: 20px;
+}
+
+.pcfFormAcceptEnabled{
+    margin-top: 20px;
+    padding: 10px;
+    background: rgb(0, 156, 228);
+    color: white;
+}
+
+.pcfFormAcceptDisabled{
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(0, 156, 228, 0);
+    color: rgb(179, 179, 179);
+}

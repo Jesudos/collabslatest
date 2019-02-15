@@ -1,0 +1,34 @@
+
+.eventListForm
+{
+   padding: 10px;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   border:1px solid rgb(236, 235, 235); 
+   background: #f6fafa
+}
+
+.eventListItem{
+    margin: 10px;
+}
+
+.eventListDateTitle
+{
+    color: #303030;
+    font-size: 1.9rem;
+    font-weight: bold;
+}
+
+.eventListSubjectTitle
+{
+    color: #303030;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.eventListTime
+{
+    color: #8a8a8a;
+    font-size: 1.6rem;
+}
+
+

@@ -1,0 +1,4 @@
+{
+    "DEV_MODE": true,  
+    "API_URL": "https://collabsapi.apps.dev.cloudsprint.io/"
+}

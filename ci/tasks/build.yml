@@ -1,0 +1,17 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: maven
+    tag: latest
+
+inputs:
+- name: source-code
+
+outputs:
+- name: uiCode
+
+run:
+  path: source-code/ci/tasks/build.sh

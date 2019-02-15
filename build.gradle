@@ -1,0 +1,204 @@
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
+    }
+}
+
+apply plugin: 'com.moowork.node'
+//apply plugin: "jacoco"
+
+group = 'com.cts.collabs'
+version = '1.0.0-SNAPSHOT'
+
+node {
+    version = '10.5.0'
+    yarnVersion = '1.9.4'
+
+    download = true
+
+    workDir = file("${project.projectDir}/toolBox/nodejs")
+    yarnWorkDir = file("${project.projectDir}/toolBox/yarn")
+    nodeModulesDir = file("${project.projectDir}")
+}
+
+task test(type: YarnTask) {
+    dependsOn 'lint'
+
+    inputs.files(fileTree('node_modules'))
+    inputs.files(fileTree('src'))
+    inputs.files(fileTree('public'))
+    inputs.file('tslint.json')
+
+    outputs.dir('build')
+
+    setEnvironment([CI: 'TRUE'])
+    args = ['test', '--color', '--silent', '--coverage']
+    //args = ['test', '--coverage', 'coverageReporters', 'lcov']
+}
+
+task start(type: YarnTask) {
+
+    inputs.files(fileTree('node_modules'))
+    inputs.files(fileTree('src'))
+    inputs.files(fileTree('public'))
+    inputs.file('tslint.json')
+
+    outputs.dir('build')
+
+    args = ['start']
+}
+
+task lint(type: YarnTask) {
+
+    inputs.files(fileTree('node_modules'))
+    inputs.files(fileTree('src'))
+    inputs.files(fileTree('public'))
+
+    outputs.dir('build')
+
+    args = ['lint']
+}
+
+task build(type: YarnTask) {
+    dependsOn 'installDependencies', 'test'
+    inputs.files(fileTree('node_modules'))
+    inputs.files(fileTree('src'))
+    inputs.files(fileTree('public'))
+
+    if ( project.hasProperty("envmode")) {
+        switch(envmode.toLowerCase()) {
+            case "nonprod":                
+                doLast {
+                    println "Running NONPROD Mode Configuration"
+                    copyNonProd()
+                }
+            break
+            case "preprod":                
+                doLast {
+                    println "Running PREPROD Mode Configuration"
+                    copyPreProd()
+                }
+            break
+            case "prod":                
+                doLast {
+                    println "Running PROD Mode Configuration"
+                    copyProd()
+                }
+            break
+            case "dev":                
+                    doLast {
+                        println "Running DEV Mode Configuration"
+                        copyDev()
+                    }
+            break 
+            case "stage":                
+                    doLast {
+                        println "Running Stage Mode Configuration"
+                        copyStage()
+                    }
+            break 
+            }                 
+        } else {    
+                println "USAGE: gradlew build -Penvmode=dev/nonprod/preprod/prod."
+                println "If no argument sent with build script, than envmode=DEV."
+                println "Default: Running DEV Mode Configuration"
+                doLast {
+                    copyDev()
+                }
+        }     
+    // copy(file:"$projectDir/public/devConfig.json", tofile:"$projectDir/public/config.json")
+   
+    outputs.dir('build')
+
+    args = ['run', 'build']
+}
+
+ext.copyDev = { ->
+    exec {
+        def fromFile = "${buildDir}/config-dev.json"
+        def toFile = "${buildDir}/config.json"
+
+        println "$fromFile"
+        println "$toFile"
+        commandLine 'cp', "$fromFile", "$toFile"
+    }
+}
+
+ext.copyNonProd = { ->
+    exec {
+        def fromFile = "${buildDir}/config-nonprod.json"
+        def toFile = "${buildDir}/config.json"
+
+        println "$fromFile"
+        println "$toFile"
+        commandLine 'cp', "$fromFile", "$toFile"
+    }
+}
+
+ext.copyPreProd = { ->
+    exec {
+        def fromFile = "${buildDir}/config-preprod.json"
+        def toFile = "${buildDir}/config.json"
+
+        println "$fromFile"
+        println "$toFile"
+        commandLine 'cp', "$fromFile", "$toFile"
+    }
+}
+
+ext.copyProd = { ->
+    exec {
+        def fromFile = "${buildDir}/config-prod.json"
+        def toFile = "${buildDir}/config.json"
+
+        println "$fromFile"
+        println "$toFile"
+        commandLine 'cp', "$fromFile", "$toFile"
+    }
+}
+
+ext.copyStage = { ->
+    exec {
+        def fromFile = "${buildDir}/config-staging.json"
+        def toFile = "${buildDir}/config.json"
+
+        println "$fromFile"
+        println "$toFile"
+        commandLine 'cp', "$fromFile", "$toFile"
+    }
+}
+
+task buildOnly(type: YarnTask) {
+    dependsOn 'installDependencies'
+    inputs.files(fileTree('node_modules'))
+    inputs.files(fileTree('src'))
+    inputs.files(fileTree('public'))
+
+    outputs.dir('build')
+
+    args = ['run', 'build']
+}
+
+task installDependencies(type: YarnTask) {
+    inputs.files(fileTree('node_modules'))
+    inputs.file('package.json')
+    inputs.file('yarn.lock')
+
+    outputs.dir('node_modules')
+
+    args = ['install']
+}
+
+task clean(type: Delete) {
+    delete 'node_modules'
+    delete 'build'
+    delete 'toolBox'
+}
+

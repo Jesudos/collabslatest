@@ -1,0 +1,42 @@
+---
+resource_types:
+- name: cf-cli-resource
+  type: docker-image
+  source:
+    repository: nulldriver/cf-cli-resource
+    tag: latest
+
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: git@github.com:TheCognizantFoundry/Collabs-UI.git
+    branch: master
+    private_key: {{git-private-key}}
+
+- name: deploy-to-pcf
+  type: cf-cli-resource
+  source:
+    api: https://api.sys.dev.cloudsprint.io
+    username: Deyvasigamani.sundaramurthy@cognizant.com
+    password: Vasansund@piv3
+    org: colabs
+    space: dev 
+    skip_cert_check: true
+    
+
+
+jobs:
+- name: ui-deploy
+  plan:
+  - get: source-code
+    trigger: true
+  - put: deploy-to-pcf
+    params:
+      commond: zero-downtime-push
+      manifest: source-code/manifest.yml
+      path: build/
+
+
+            
+  

@@ -1,0 +1,19 @@
+.BigCalendarContainer{
+    height: 800px !important;
+}
+
+.eventHeader{
+    height: 100px ;
+    background: #f1efef;
+    margin: 10px;
+    padding: 10px;
+}
+
+.selectClass{    
+   width: 18em;
+   margin-top: 16px;
+}
+.thumb {
+    width: 200px;
+    height: 180px;
+}

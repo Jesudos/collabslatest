@@ -1,0 +1,90 @@
+@font-face {
+    font-family: TTNormsBlack;
+    src: url("fonts/TTNorms-Black.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsBlackItalic;
+    src: url("fonts/TTNorms-BlackItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsBold;
+    src: url("fonts/TTNorms-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsBoldItalic;
+    src: url("fonts/TTNorms-BoldItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsExtraBold;
+    src: url("fonts/TTNorms-ExtraBold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsExtraBoldItalic;
+    src: url("fonts/TTNorms-ExtraBoldItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsExtraLight;
+    src: url("fonts/TTNorms-ExtraLight.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsExtraLightItalic;
+    src: url("fonts/TTNorms-ExtraLightItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsHeavy;
+    src: url("fonts/TTNorms-Heavy.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsHeavyItalic;
+    src: url("fonts/TTNorms-HeavyItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsItalic;
+    src: url("fonts/TTNorms-Italic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsLight;
+    src: url("fonts/TTNorms-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsLightItalic;
+    src: url("fonts/TTNorms-LightItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsMedium;
+    src: url("fonts/TTNorms-Medium.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsMediumItalic;
+    src: url("fonts/TTNorms-MediumItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsRegular;
+    src: url("fonts/TTNorms-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsThin;
+    src: url("fonts/TTNorms-Thin.otf") format("opentype");
+}
+
+@font-face {
+    font-family: TTNormsThinItalic;
+    src: url("fonts/TTNorms-ThinItalic.otf") format("opentype");
+}
+

@@ -1,0 +1,10 @@
+---
+applications:
+- name: collabsui
+  path: build
+  memory: 512M
+  instances: 1
+  buildpacks:
+  - staticfile_buildpack
+
+
