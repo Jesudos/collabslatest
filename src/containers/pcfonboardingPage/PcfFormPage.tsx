@@ -18,8 +18,15 @@ const options = [
 ];
 class PcfFormPage extends React.Component<PcfFormPageProps> {
     state = {
-        showPcfForm: true
+        showPcfForm: true,
+        dataFromPcfForm: '',
     };
+
+    pcfFormStates = (data: string) => {
+        this.setState({
+            dataFromPcfForm: data,
+        });
+    }
     render() {
         return (
             <div className="container">
@@ -37,13 +44,13 @@ class PcfFormPage extends React.Component<PcfFormPageProps> {
                 </div>
                 <div className="card">
                     {this.state.showPcfForm
-                        ? <PcfForm title="Onboarding Request" />
-                        : <PcfFormSubmit />
+                        ? <PcfForm title="Onboarding Request" callBackFunc={this.pcfFormStates} />
+                        : <PcfFormSubmit reqType={this.state.dataFromPcfForm} />
                     }
                 </div>
                 {
                     this.state.showPcfForm &&
-                    <button onClick={this.onNextClick}>Next</button>
+                    <button className="btn btn-primary btn-md" onClick={this.onNextClick}>Next</button>
                 }
             </div>
         );

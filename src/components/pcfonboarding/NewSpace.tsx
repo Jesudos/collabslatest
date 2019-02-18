@@ -18,7 +18,7 @@ export class NewSpace extends React.Component<Props, State> {
     render() {
       return (
         <div>
-          <h4>First Child</h4>
+          <h4>Space Name</h4>
           <input type="text" placeholder="Type here" onChange={this.update} value={this.state.fieldValue}/>
         </div>
 

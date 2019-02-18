@@ -1,7 +1,19 @@
+
 .pcfFormTitle
 {
     color: #333333;
     font-weight: 750;
+    margin: 20px auto;
+    display: inline-block;
+}
+.pcfFormTitle2
+{
+    position: relative;
+    left: 0;
+    color: #333333;
+    font-weight: 750;
+    margin: 20px auto;
+    display: inline-block;
 }
 .addEventTitle
 {
@@ -19,13 +31,15 @@
   cursor: pointer;
 }
 .selectStyle{
+    margin: 10px 15px 10px 10px;
+    border: 0px transparent solid;
     background-color: white;
-    float:left;
-    border: none;
-    color: #1890FF;
     text-decoration: underline;
-    text-decoration-color:  #1890FF;
-    margin-left: 15px;
+    cursor: pointer;
+    color:dodgerblue;
+}
+.nextButtonStyle{
+    margin: 10px;
 }
 
 .pcfFormBtn{
@@ -52,17 +66,6 @@
     font-size: 18px;
     margin: 20px;
 }
-
-.pcfFormAcceptEnabled{
-    margin-top: 20px;
-    padding: 10px;
-    background: rgb(0, 156, 228);
-    color: white;
-}
-
-.pcfFormAcceptDisabled{
-    margin-top: 20px;
-    padding: 10px;
-    background: rgba(0, 156, 228, 0);
-    color: rgb(179, 179, 179);
+.btn-space{
+    margin:20px 0px;
 }

@@ -12,7 +12,7 @@ export class PcfFormSubmit extends React.Component<PcfFormSubmitProps, PcfFormSu
     }
 
     render() {
-        const btnClass = this.state.enableFlag ? 'pcfFormAcceptEnabled' : 'pcfFormAcceptDisabled';
+        const btnClass = this.state.enableFlag ? 'btn btn-primary btn-lg active btn-space' : 'btn btn-primary btn-lg disabled btn-space';
 
         return (
             <div>
@@ -53,8 +53,10 @@ export class PcfFormSubmit extends React.Component<PcfFormSubmitProps, PcfFormSu
 
                 </p>
 
-                <div><input className="pcfFormSubmitCheckbox" type="checkbox" checked={this.state.enableFlag} onChange={this.onClickCheckBox} />
-                    <span onClick={this.onClickCheckBox}><a href="#" className="pcfFormSubmitText">I agree to the Terms and Conditions</a></span>
+                <div><input id="checkBox" className="pcfFormSubmitCheckbox" type="checkbox" checked={this.state.enableFlag} onChange={this.onClickCheckBox} />
+                    <span onClick={this.onClickCheckBox}><a href="#checkBox" className="pcfFormSubmitText">I agree to the Terms and Conditions</a></span>
+                    <span>{this.props.reqType}</span>
+                        
                 </div>
                 <button className={btnClass} onClick={this.onAcceptClick}>ACCEPT</button>
             </div>
@@ -85,4 +87,5 @@ export interface PcfFormSubmitState {
 }
 
 export interface PcfFormSubmitProps {
+    reqType: string;
 }
