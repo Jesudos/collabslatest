@@ -17,22 +17,22 @@ export const BookEventHeader: React.StatelessComponent<ButtonProps> = (props) =>
                     <div className="row">
                         <div className="">
                             <h1 className="white-text">
-                            Engage. Collaborate. Experience Learning by Doing. 
+                                Engage. Collaborate. Experience Learning by Doing.
                             </h1>
                             <p>&nbsp;</p>
                             <p className="sub-white-text">
-                            <ol>
-                            <li>Ready-to-access engineering infrastructure</li>
-                            <li>Tools to fast track cloud native development and transformation</li>
-                            <li>Lean with Agile execution experience</li>
-                            <li>Focus on value stream and reducing waste</li>
-                            </ol>
+                                <ol>
+                                    <li>Ready-to-access engineering infrastructure</li>
+                                    <li>Tools to fast track cloud native development and transformation</li>
+                                    <li>Lean with Agile execution experience</li>
+                                    <li>Focus on value stream and reducing waste</li>
+                                </ol>
                             </p>
                             <p>&nbsp;</p>
                             <p className="lead-white-text">
-                            You can book Cognizant Labs to conduct the following: product demos, customer visits, 
-                            environment onboarding for development of working prototypes, and sessions such as Tech Talk, 
-                            event storming, and retros, 
+                                You can book Cognizant Labs to conduct the following: product demos, customer visits,
+                                environment onboarding for development of working prototypes, and sessions such as Tech Talk,
+                                event storming, and retros,
                             </p>
                             <p>&nbsp;</p>
                             <p>&nbsp;</p>
@@ -41,6 +41,7 @@ export const BookEventHeader: React.StatelessComponent<ButtonProps> = (props) =>
                                 btnType={props.btnType}
                                 clickEvt={props.clickEvt}
                             />
+                            <p>&nbsp;</p>
                         </div>
                     </div>
                 </div>

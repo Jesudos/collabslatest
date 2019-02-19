@@ -9,13 +9,19 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
         this.state = {
             option: '',
             space: '',
-            newSpace: false,        };
+            newSpace: false,
+            showNewSpace: false
+        };
     }
     optionClick = (val: string) => {
         this.setState({
             option: val
         });
+        val === 'New space' ? this.setState({ showNewSpace: true }) : this.setState({ showNewSpace: false });
         this.props.callBackFunc(val);
+    }
+    optionUnClicked = () => {
+        this.setState({ option: '' });
     }
     onSpaceClick = (val: string) => {
         this.setState({
@@ -38,22 +44,31 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
             <div>
                 <div>
                     <p className="pcfFormTitle">Select your requirement type</p>
-                    <AddOption option="Org for a practice/vertical" optionClick={this.optionClick} />
-                    <AddOption option="New Space" optionClick={this.optionClick} />
-                    <AddOption option="User access to an existing Space" optionClick={this.optionClick} />
-                    <AddOption option="User access extension to an existing Space" optionClick={this.optionClick} />
-                    <AddOption option="Kubernetes Cluster" optionClick={this.optionClick} />
+                    <AddOption option="Org for a practice/vertical" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
+                    <AddOption option="New space" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
+                    <AddOption option="User access to an existing space" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
+                    <AddOption option="User access extension to an existing space" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
+                    <AddOption option="Kubernetes cluster" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
                     {this.state.option}
                 </div><br /><br />
-                <div>
+                {this.state.showNewSpace ?
+                    <div>
+                        <p className="pcfFormTitle2">Select Space for which access is required or Select New Space and provide a Space name</p>
+                        <AddOption option="Space1" optionClick={this.onSpaceClick} optionUnClicked={this.optionUnClicked} />
+                        <AddOption option="Space2" optionClick={this.onSpaceClick} optionUnClicked={this.optionUnClicked} />
+                        {this.state.space}
+                        <button className="selectStyle" onClick={this.buttonClick}>New Space</button><br /><br />
+                        {this.state.newSpace ? <NewSpace onUpdate={this.onUpdate} /> : null}
+                    </div> : null
+                }
+                {/* <div>
                     <p className="pcfFormTitle2">Select Space for which access is required or Select New Space and provide a Space name</p>
-                    <AddOption option="Space1" optionClick={this.onSpaceClick} />
-                    <AddOption option="Space2" optionClick={this.onSpaceClick} />
+                    <AddOption option="Space1" optionClick={this.onSpaceClick} optionUnClicked={this.optionUnClicked} />
+                    <AddOption option="Space2" optionClick={this.onSpaceClick} optionUnClicked={this.optionUnClicked} />
                     {this.state.space}
                     <button className="selectStyle" onClick={this.buttonClick}>New Space</button><br /><br />
                     {this.state.newSpace ? <NewSpace onUpdate={this.onUpdate} /> : null}
-                </div>
-            
+                </div> */}
             </div>
         );
     }
@@ -63,6 +78,7 @@ export interface PcfFormState {
     option: string;
     space: string;
     newSpace: boolean;
+    showNewSpace: boolean;
 }
 
 export interface PcfFormProps {

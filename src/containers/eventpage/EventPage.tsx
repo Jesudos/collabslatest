@@ -43,7 +43,7 @@ const imgOption: ImageOptions[] = [
     {
         key: 'DGLSRZ',
         value: [
-            '../img/9.jpg', '../img/6.jpg', '../img/8.jpg', '../img/7.jpg', '../img/5.jpg', '../img/6.jpg'
+            '../img/srz_1.png', '../img/srz_2.png', '../img/srz_3.png', '../img/srz_4.png', '../img/srz_1.png'
         ]
     },
     {
@@ -57,6 +57,7 @@ const imgOption: ImageOptions[] = [
 class EventPage extends React.Component<EventPageProps> {
     state = {
         hideAddEvent: false,
+        showGalleryIFrame: false,
         events: [],
         defaultDate: new Date(),
         start: new Date(),
@@ -158,11 +159,9 @@ class EventPage extends React.Component<EventPageProps> {
         for (let i = 0; i <= imgOption.length; i++) {
             const key = imgOption[i].key;
             if (key === selectedLocation) {
-                this.setState(() => {
-                    return {
-                        listImages: imgOption[i].value
-                    };
-                });
+                this.setState((prevState, props) => ({
+                    listImages: imgOption[i].value
+                }));
                 break;
             }
         }
@@ -187,32 +186,35 @@ class EventPage extends React.Component<EventPageProps> {
             end
         });
     }
+    onClickImage = () => {
+        console.error('image clicked');
+        this.setState(() => {
+            return {
+                showGalleryIFrame: !this.state.showGalleryIFrame
+            };
+        });
+    }
+
     render() {
         return (
 
             <div className="container">
                 <div className="row">
                     <div className="eventHeader">
-                        <div className="col-sm-5">
-                            <h5>Event Calendar</h5>
+                        <h4>Event Calendar</h4>
+                        <br />
+                        <div className="col-sm-6">
+                            <CreatableSelect onChange={this.handleLocation} options={options} />
                         </div>
-                        <div className="col-sm-5">
-                            <div className="selectClass">
-                                <CreatableSelect
-                                    onChange={this.handleLocation}
-                                    options={options}
-                                />
-                            </div>
-                        </div>
-                        <div className="col-sm-2">
-                            <br />
-                            <button className="btn btn-primary" onClick={this.onAddEventClick}> Add Event</button>
+                        <div className="col-sm-6">
+                            <button className="btn btn-primary" onClick={this.onAddEventClick}>
+                                Add Event</button>
                         </div>
                     </div>
                 </div>
-                <GalleryThumb
-                    listImages={this.state.listImages}
-                />
+
+                <GalleryThumb onClickImage={this.onClickImage} showView={this.state.showGalleryIFrame} listImages={this.state.listImages} />
+
                 <div className="row">
                     <div className="col-sm-8">
                         <p>&nbsp;</p>
@@ -237,7 +239,7 @@ class EventPage extends React.Component<EventPageProps> {
                     </div>
                     <div className="col-sm-4">
                         {this.state.hideAddEvent
-                            ? <AddEvent onCancelClick={this.onCancelEventClick} onUpdateBtnClick={this.onUpdateBtnClick} startDate={this.state.start} endDate={this.state.end} defaultDate={this.state.defaultDate} />
+                            ? <AddEvent onCancelClick={this.onCancelEventClick} onUpdateBtnClick={this.onUpdateBtnClick} startDate={this.state.start} endDate={this.state.end} defaultDate={this.state.defaultDate} location={this.state.selectedOption} />
                             : <EventList setDefaultDate={this.setDefaultDate} todayEvents={this.props.todayEvents} />}
                     </div>
                 </div>

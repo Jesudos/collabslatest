@@ -50,7 +50,7 @@ class PcfFormPage extends React.Component<PcfFormPageProps> {
                 </div>
                 {
                     this.state.showPcfForm &&
-                    <button className="btn btn-primary btn-md" onClick={this.onNextClick}>Next</button>
+                    <button className="btn btn-primary btn-md btn-space" onClick={this.onNextClick}>Next</button>
                 }
             </div>
         );

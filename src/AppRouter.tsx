@@ -15,9 +15,9 @@ class AppRouter extends React.Component {
                     <Route exact path="/about" component={LandingPageContainer} />
                     <Route exact path="/login" component={LoginPage} />
                     <Route exact path="/event" component={EventPageContainer} />
-                    <Route exact path="/feedback" component={EventPageContainer} />
-                    <Route exact path="/dashboard" component={EventPageContainer} />
-                    <Route exact path="/users" component={EventPageContainer} />
+                    {/* <Route exact path="/feedback" component={EventPageContainer} /> */}
+                    {/* <Route exact path="/dashboard" component={EventPageContainer} /> */}
+                    {/* <Route exact path="/users" component={EventPageContainer} /> */}
                     <Route exact path="/pcfform" component={PcfFormPageContainer} />
                     <Redirect exact from="/" to="/about" />
                     <Redirect to="/error" />

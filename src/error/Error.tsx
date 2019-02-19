@@ -12,7 +12,7 @@ class Error extends React.Component<ErrorProps> {
         return (
             <div>Error</div>
         );
-    }     
+    }
 }
 
 export default Error;

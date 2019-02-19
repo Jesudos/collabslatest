@@ -23,14 +23,15 @@ export default class AddEventForm extends React.Component<AddEventProps, AddEven
         participantIds: [],
         error: [],
         eventCategory: [],
-        options: []
+        options: [],
+        location: ''
     };
 
     constructor(parameters: AddEventProps) {
         super(parameters);
     }
 
-    componentDidMount() {        
+    componentDidMount() {
         if (this.props.startDate) {
             this.setState(() => {
                 return {
@@ -256,7 +257,13 @@ export default class AddEventForm extends React.Component<AddEventProps, AddEven
     }
 
     onSubmitEvent = () => {
+        console.error(this.props.location);
         const errorList: string[] = [];
+
+        if (this.props.location === '') {
+            errorList.push('Location is missing');
+        }
+
         if (this.state.name === '') {
             errorList.push('Event subject is missing');
         }
@@ -282,6 +289,16 @@ export default class AddEventForm extends React.Component<AddEventProps, AddEven
         this.state.participantIds.map((email: string) => {
             emailsIds.push({ emailId: email });
         });
+        console.error(this.props.location);
+
+        this.state.startTime.setDate(this.state.startDate.getDate());
+        this.state.startTime.setMonth(this.state.startDate.getMonth());
+        this.state.startTime.setFullYear(this.state.startDate.getFullYear());
+
+        this.state.endTime.setDate(this.state.endDate.getDate());
+        this.state.endTime.setMonth(this.state.endDate.getMonth());
+        this.state.endTime.setFullYear(this.state.endDate.getFullYear());
+        
         const event = {
             name: this.state.name,
             type: this.state.type,
@@ -290,8 +307,13 @@ export default class AddEventForm extends React.Component<AddEventProps, AddEven
             startTime: this.state.startTime,
             endDate: this.state.endDate,
             endTime: this.state.endTime,
-            eventParticipantList: emailsIds
+            eventParticipantList: emailsIds,
+            locationName: this.props.location
         };
+        // console.error(event.startDate);
+        // console.error(event.startTime);
+        // console.error(event.endDate);
+        // console.error(event.endTime);
         axios.post(`https://collabsapi.apps.dev.cloudsprint.io/event`, event)
             .then(res => {
                 console.error(res.data);
@@ -314,6 +336,7 @@ type AddEvent = {
     error: string[];
     eventCategory: EventCategory[];
     options: { value: number, label: string }[];
+    location: string;
     // attachments: string;
     // boxLink: string;
     // status: string;
@@ -325,4 +348,5 @@ export interface AddEventProps {
     startDate: Date;
     endDate: Date;
     defaultDate: Date;
+    location: string;
 }

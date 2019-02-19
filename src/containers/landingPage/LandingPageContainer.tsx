@@ -22,24 +22,29 @@ export const mapStateToProps = (state: AppState) => {
 };
 
 export const mapDispatchToProps = (dispatch: Dispatch<AppState>) => {
+
+    const changeIndicator = () => {
+        const aboutSelect = document.getElementById('about_select') as HTMLElement;
+        const aboutMenu = document.getElementById('menu_about') as HTMLElement;
+        aboutSelect.style.visibility = 'hidden';
+        aboutMenu.style.color = '#374050';
+
+        const eventSelect = document.getElementById('event_select') as HTMLElement;
+        const eventMenu = document.getElementById('menu_event') as HTMLElement;
+        eventSelect.style.visibility = 'visible';
+        eventMenu.style.color = '#1890FF';
+    };
+
     return {
         onSubmit: () => {
-            console.error('reached here');
+            changeIndicator();
+            dispatch(push('/event'));
         },
         bookEvent: () => {
-            const aboutSelect = document.getElementById('about_select') as HTMLElement;
-            const aboutMenu = document.getElementById('menu_about') as HTMLElement;
-            aboutSelect.style.visibility = 'hidden';
-            aboutMenu.style.color = '#374050';
-
-            const eventSelect = document.getElementById('event_select') as HTMLElement;
-            const eventMenu = document.getElementById('menu_event') as HTMLElement;
-            eventSelect.style.visibility = 'visible';
-            eventMenu.style.color = '#1890FF';
+            changeIndicator();
             dispatch(push('/event'));
         },
         onComponentDidMount: () => {
-            // alert(url);
             dispatch(getUpcomingEvents);
         }
     };

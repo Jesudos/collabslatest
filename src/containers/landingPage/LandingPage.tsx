@@ -12,7 +12,7 @@ export interface LandingPageProps {
     btnType: string;
     upcomingEvents: EventDetail[];
     blogEvents: UpcomingEvent[];
-} 
+}
 
 class LandingPage extends React.Component<LandingPageProps> {
     render() {
@@ -46,12 +46,10 @@ class LandingPage extends React.Component<LandingPageProps> {
 
             </div>
         );
-    }    
-    
-    componentWillMount() {
-    //    const url: string = window.location.href;
-       this.props.onComponentDidMount();
+    }
 
+    componentWillMount() {
+        this.props.onComponentDidMount();
     }
 }
 

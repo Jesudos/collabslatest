@@ -1,0 +1,27 @@
+
+.corouselBG
+{
+   background: rgba(70, 66, 66, 0.623) !important; 
+}
+
+.center {
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 1200px !important;
+    height: 600px !important;
+  }
+
+  .modal-content{
+   position: absolute !important;
+  }
+  
+  .modal-dialog{
+   margin-left: 10% !important;
+   margin-top: 5% !important;
+  }
+  
+  .thumb{
+   width: 80%;
+   height: 80%;
+  }

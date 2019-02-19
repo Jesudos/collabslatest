@@ -13,6 +13,18 @@ export interface UpcomingEventsProps {
 
 export const UpcomingEvents: React.StatelessComponent<UpcomingEventsProps> = (props) => {
 
+    const envetThumb = (item: EventDetail, imageurl: string) => {
+        return (
+            <EventThumb
+                cardDate={item.endDate}
+                cardImage={imageurl}
+                cardText={item.notes}
+                cardTitle={item.name}
+                clickEvt={props.clickEvt}
+            />
+        );
+    };
+
     return (
         <div id="upevents" className="section">
             <div className="container">
@@ -21,137 +33,72 @@ export const UpcomingEvents: React.StatelessComponent<UpcomingEventsProps> = (pr
                     <p className="section-content">{props.notes}</p>
                     <p>&nbsp;</p>
                 </div>
-                { (props.listItems.length === 0) && 
-                        <InfoAlert message="No upcoming events found"/>
+                {(props.listItems.length === 0) &&
+                    <InfoAlert message="No upcoming events found" />
                 }
-                 { (props.listItems.length > 0) && (props.listItems.length <= 3) &&
-                        <div className="row">
-                        {props.listItems.map((item: EventDetail, index: number) => 
+
+                {(props.listItems.length > 0) && (props.listItems.length <= 3) &&
+                    <div className="row">
+                        {props.listItems.map((item: EventDetail, index: number) =>
                             <div key={index} className="col-sm-4">
-                                <EventThumb
-                                    cardDate={item.endDate}
-                                    cardImage="../img/1.jpg"
-                                    cardText={item.notes}
-                                    cardTitle={item.name}
-                                    clickEvt={props.clickEvt}
-                                />
+                                {envetThumb(item, '../img/1.jpg')}
                             </div>
-                            )
-                        }
-                        </div>
-                 }
-                 { (props.listItems.length > 3) &&
-                <div id="demo" className="carousel slide" data-ride="carousel">
-                    <ol className="carousel-indicators">
-                        <li data-target="#demo" data-slide-to="0" className="active"/>
-                        <li data-target="#demo" data-slide-to="1"/>
-                        { (props.listItems.length > 6) &&
-                        <li data-target="#demo" data-slide-to="2"/>
-                        }
-                    </ol>
-                    <div className="carousel-inner">                    
-                        <div className="item active">
-                            <div className="col-sm-4">
-                                <EventThumb
-                                    cardDate={props.listItems[0].startDate}
-                                    cardImage="../img/1.jpg"
-                                    cardText={props.listItems[0].notes}
-                                    cardTitle={props.listItems[0].name}
-                                    clickEvt={props.clickEvt}
-                                />
+                        )}
+                    </div>
+                }
+                {(props.listItems.length > 3) &&
+                    <div id="demo" className="carousel slide" data-ride="carousel">
+                        <ol className="carousel-indicators">
+                            <li data-target="#demo" data-slide-to="0" className="active" />
+                            <li data-target="#demo" data-slide-to="1" />
+                            {(props.listItems.length > 6) &&
+                                <li data-target="#demo" data-slide-to="2" />
+                            }
+                        </ol>
+                        <div className="carousel-inner">
+                            <div className="item active">
+                                <div className="col-sm-4">{envetThumb(props.listItems[0], '../img/1.jpg')}</div>
+                                <div className="col-sm-4">{envetThumb(props.listItems[1], '../img/2.jpg')}</div>
+                                <div className="col-sm-4">{envetThumb(props.listItems[2], '../img/3.jpg')}</div>
                             </div>
-                            <div className="col-sm-4">
-                                <EventThumb
-                                    cardDate={props.listItems[1].startDate}
-                                    cardImage="../img/2.jpg"
-                                    cardText={props.listItems[1].notes}
-                                    cardTitle={props.listItems[1].name}
-                                    clickEvt={props.clickEvt}
-                                />
+                            <div className="item">
+                                <div className="col-sm-4">
+                                    {envetThumb(props.listItems[3], '../img/4.jpg')}
+                                </div>
+                                {(props.listItems[4] !== undefined && props.listItems[4] !== 'undefined') &&
+                                    <div className="col-sm-4">
+                                        {envetThumb(props.listItems[4], '../img/5.jpg')}
+                                    </div>
+                                }
+                                {(props.listItems[5] !== undefined && props.listItems[5] !== 'undefined') &&
+                                    <div className="col-sm-4">
+                                        {envetThumb(props.listItems[5], '../img/9.jpg')}
+
+                                    </div>
+                                }
                             </div>
-                            <div className="col-sm-4">
-                                <EventThumb
-                                    cardDate={props.listItems[2].startDate}
-                                    cardImage="../img/3.jpg"
-                                    cardText={props.listItems[2].notes}
-                                    cardTitle={props.listItems[2].name}
-                                    clickEvt={props.clickEvt}
-                                />
-                            </div>  
-                        </div>   
-                        <div className="item">
-                            <div className="col-sm-4">
-                                <EventThumb
-                                    cardDate={props.listItems[3].startDate} 
-                                    cardImage="../img/4.jpg"
-                                    cardText={props.listItems[3].notes}
-                                    cardTitle={props.listItems[3].name}
-                                    clickEvt={props.clickEvt}
-                                />
-                            </div>
-                            {(props.listItems[4] !== undefined && props.listItems[4] !== 'undefined') && 
-                                <div className="col-sm-4">                              
-                                    <EventThumb
-                                        cardDate={props.listItems[4].startDate}
-                                        cardImage="../img/5.jpg"
-                                        cardText={props.listItems[4].notes}
-                                        cardTitle={props.listItems[4].name}
-                                        clickEvt={props.clickEvt}
-                                    />
+                            {(props.listItems.length > 6) &&
+                                <div className="item">
+                                    {(props.listItems[6] !== undefined && props.listItems[6] !== 'undefined') &&
+                                        <div className="col-sm-4">
+                                            {envetThumb(props.listItems[6], '../img/6.jpg')}
+                                        </div>
+                                    }
+                                    {(props.listItems[7] !== undefined && props.listItems[7] !== 'undefined') &&
+                                        <div className="col-sm-4">
+                                            {envetThumb(props.listItems[7], '../img/7.jpg')}
+                                        </div>
+                                    }
+                                    {(props.listItems[8] !== undefined && props.listItems[8] !== 'undefined') &&
+                                        <div className="col-sm-4">
+                                            {envetThumb(props.listItems[8], '../img/8.jpg')}
+                                        </div>
+                                    }
                                 </div>
                             }
-                            {(props.listItems[5] !== undefined && props.listItems[5] !== 'undefined') &&                             
-                            <div className="col-sm-4">
-                                <EventThumb
-                                    cardDate={props.listItems[5].startDate}
-                                    cardImage="../img/9.jpg"
-                                    cardText={props.listItems[5].notes}
-                                    cardTitle={props.listItems[5].name}
-                                    clickEvt={props.clickEvt}
-                                />
-                            </div>  
-                            }
-                        </div>   
-                        { (props.listItems.length > 6) &&
-                        <div className="item">
-                        {(props.listItems[6] !== undefined && props.listItems[6] !== 'undefined') && 
-                            <div className="col-sm-4">
-                                <EventThumb
-                                    cardDate={props.listItems[6].startDate}
-                                    cardImage="../img/6.jpg"
-                                    cardText={props.listItems[6].notes}
-                                    cardTitle={props.listItems[6].name}
-                                    clickEvt={props.clickEvt}
-                                />
-                            </div>
-                        }
-                        {(props.listItems[7] !== undefined && props.listItems[7] !== 'undefined') && 
-                            <div className="col-sm-4">
-                                <EventThumb
-                                    cardDate={props.listItems[7].startDate}
-                                    cardImage="../img/7.jpg"
-                                    cardText={props.listItems[7].notes}
-                                    cardTitle={props.listItems[7].name}
-                                    clickEvt={props.clickEvt}
-                                />
-                            </div>
-                        }
-                        {(props.listItems[8] !== undefined && props.listItems[8] !== 'undefined') && 
-                            <div className="col-sm-4">
-                                <EventThumb
-                                    cardDate={props.listItems[8].startDate}
-                                    cardImage="../img/8.png"
-                                    cardText={props.listItems[8].notes}
-                                    cardTitle={props.listItems[8].name}
-                                    clickEvt={props.clickEvt}
-                                />
-                            </div>  
-                        }
-                        </div>  
-                        }                      
-                    </div>                      
-                </div>   
-                }                 
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     );
