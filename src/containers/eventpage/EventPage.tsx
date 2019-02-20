@@ -239,7 +239,14 @@ class EventPage extends React.Component<EventPageProps> {
                     </div>
                     <div className="col-sm-4">
                         {this.state.hideAddEvent
-                            ? <AddEvent onCancelClick={this.onCancelEventClick} onUpdateBtnClick={this.onUpdateBtnClick} startDate={this.state.start} endDate={this.state.end} defaultDate={this.state.defaultDate} location={this.state.selectedOption} />
+                            ? <AddEvent
+                                onCancelClick={this.onCancelEventClick}
+                                onUpdateBtnClick={this.onUpdateBtnClick}
+                                startDate={this.state.start}
+                                endDate={this.state.end}
+                                defaultDate={this.state.defaultDate}
+                                location={this.state.selectedOption}
+                            />
                             : <EventList setDefaultDate={this.setDefaultDate} todayEvents={this.props.todayEvents} />}
                     </div>
                 </div>

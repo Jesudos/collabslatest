@@ -47,10 +47,10 @@ class PcfFormPage extends React.Component<PcfFormPageProps> {
                         ? <PcfForm title="Onboarding Request" callBackFunc={this.pcfFormStates} />
                         : <PcfFormSubmit reqType={this.state.dataFromPcfForm} />
                     }
-                </div>
+                </div><br/><br/>
                 {
                     this.state.showPcfForm &&
-                    <button className="btn btn-primary btn-md btn-space" onClick={this.onNextClick}>Next</button>
+                   <div id="button-bottom"><button className="btn btn-primary btn-md btn-space" onClick={this.onNextClick}>Next</button></div>
                 }
             </div>
         );

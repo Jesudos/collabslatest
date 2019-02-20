@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import './PcfForm.css';
 export class NewSpace extends React.Component<Props, State> {
 
   constructor(param: Props) {
@@ -17,9 +17,9 @@ export class NewSpace extends React.Component<Props, State> {
   }
     render() {
       return (
-        <div>
-          <h4>First Child</h4>
-          <input type="text" placeholder="Type here" onChange={this.update} value={this.state.fieldValue}/>
+        <div id="spacedetails">
+          <div id="space"><label>Enter Space Name</label>
+          <input  type="text" placeholder="Type here" onChange={this.update} value={this.state.fieldValue}/></div>
         </div>
 
       );
