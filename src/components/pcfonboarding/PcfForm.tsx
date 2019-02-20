@@ -11,8 +11,20 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
             option: '',
             space: '',
             newSpace: false,
-            showNewSpace: false
+            showNewSpace: false,
+            employeeid: '',
+            employeename: '',
+            businessjustification: '',
+            supervisorid: '',
+            supervisorname: '',
+            vertical: ''
         };
+        this.onemployeeidChange = this.onemployeeidChange.bind(this);
+        this.onemployeenameChange = this.onemployeenameChange.bind(this);
+        this.onbusinessChange = this.onbusinessChange.bind(this);
+        this.onsupervisoridChange = this.onsupervisoridChange.bind(this);
+        this.onverticalChange = this.onverticalChange.bind(this);
+        this.onsupervisornameChange = this.onsupervisornameChange.bind(this);
     }
     optionClick = (val: string) => {
         this.setState({
@@ -48,6 +60,24 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
             space: val,
         });
     }
+    onemployeeidChange(e: React.FormEvent<HTMLInputElement>) {
+        this.setState({employeeid: e.currentTarget.value});
+      }
+      onemployeenameChange(e: React.FormEvent<HTMLInputElement>) {
+        this.setState({employeename: e.currentTarget.value});
+      }
+      onbusinessChange(e: React.FormEvent<HTMLTextAreaElement>) {
+        this.setState({businessjustification: e.currentTarget.value});
+      }
+      onsupervisoridChange(e: React.FormEvent<HTMLInputElement>) {
+        this.setState({supervisorid: e.currentTarget.value});
+      }
+    onsupervisornameChange(e: React.FormEvent<HTMLInputElement>) {
+        this.setState({supervisorname: e.currentTarget.value});
+      }
+      onverticalChange(e: React.FormEvent<HTMLSelectElement>) {
+        this.setState({vertical: e.currentTarget.value});
+      }
     render() {
         return (
             <div>
@@ -64,7 +94,7 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
                     <AddOption option="User access to an existing space" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
                     <AddOption option="User access extension to an existing space" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
                     <AddOption option="Kubernetes cluster" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
-                </div><br /><br />
+                </div><br /><br /><br/>
                 {this.state.showNewSpace ?
                     <div>
                         
@@ -82,15 +112,21 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
                 <div id="employeedetails" className="borderTopBottom">
                     
                     <div id="employeeid"><label>Employee ID</label>
-                    <input type="text"name="employeeid"  /></div>
+                    <input type="text"name="employeeid" value={this.state.employeeid} onChange={this.onemployeeidChange}  /></div>
                     <div id="employeename"><label>Employee Name</label>
-                    <input type="text"name="employeename" /></div>
+                    <input type="text"name="employeename" value={this.state.employeename} onChange={this.onemployeenameChange}/></div>
                     <div id="businessjustification"><label>Enter Business Justification for the request</label>
-                    <textarea name="businessjustification" /></div>
+                    <textarea name="businessjustification" value={this.state.businessjustification} onChange={this.onbusinessChange}/></div>
                     <div id="supervisorid"><label>HCM Supervisor ID</label>
-                    <input type="text"name="supervisorid" /></div>
+                    <input type="text"name="supervisorid" value={this.state.supervisorid} onChange={this.onsupervisoridChange} /></div>
                     <div id="supervisorname"><label>HCM Supervisor Name</label>
-                    <input type="text"name="supervisorname" /></div>
+                    <input type="text"name="supervisorname" value={this.state.supervisorname} onChange={this.onsupervisornameChange}/></div><br/>
+                    <div id="vertical">
+                    <label>Select your vertical</label>
+                    <select value={this.state.vertical} onChange={this.onverticalChange}>
+                      <option value="bfs">BFS</option>
+                      <option value="insurance">Insurance</option>
+                    </select></div>
                 </div>
             
             </div>
@@ -105,6 +141,12 @@ export interface PcfFormState {
     space: string;
     newSpace: boolean;
     showNewSpace: boolean;
+    employeeid: string;
+    employeename: string;
+    businessjustification: string;
+    supervisorid: string;
+    supervisorname: string;
+    vertical: string;
 }
 
 export interface PcfFormProps {

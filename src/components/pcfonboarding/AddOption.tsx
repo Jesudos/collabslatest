@@ -13,13 +13,15 @@ export class AddOption extends React.Component<AddOptionProps, AddOptionState> {
         this.setState({ buttonClicked: !this.state.buttonClicked });
     }
     optionUnClicked = () => {
-        this.setState({ buttonClicked: !this.state.buttonClicked });
+        if (this.props.option !== 'New space') {
+            this.setState({ buttonClicked: !this.state.buttonClicked });
+        }
     }
 
     render() {
         return (
             <div>
-                <button className="optionStyle" onFocus={this.optionClick} onBlur={this.optionUnClicked}>
+                <button type="radio"className="optionStyle" onFocus={this.optionClick} onBlur={this.optionUnClicked} >
                     <i className={this.state.buttonClicked ? 'fa fa-check-circle iconStyle onCLickIconColor' : 'fa fa-check-circle iconStyle'} />
                     {this.props.option}
                 </button>
