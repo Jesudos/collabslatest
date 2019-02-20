@@ -7,6 +7,7 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
     constructor(parameters: PcfFormProps) {
         super(parameters);
         this.state = {
+            requirementType: '',
             option: '',
             space: '',
             newSpace: false,
@@ -22,6 +23,14 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
     }
     optionUnClicked = () => {
         this.setState({ option: '' });
+    }
+    requirementClick = (val: string) => {
+        this.setState({
+            requirementType: val
+        });
+    }
+    requirementUnClicked = () => {
+        this.setState({ requirementType: '' });
     }
     onSpaceClick = (val: string) => {
         this.setState({
@@ -42,14 +51,19 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
     render() {
         return (
             <div>
-                <div>
+                 <div className="paddingDiv">
                     <p className="pcfFormTitle">Select your requirement type</p>
+                    <AddOption option="PCF Org/Space /User Allocation" optionClick={this.requirementClick} optionUnClicked={this.requirementUnClicked} />
+                    <AddOption option="Product Onboarding" optionClick={this.requirementClick} optionUnClicked={this.requirementUnClicked} />
+                </div><br /><br />
+                <div className="borderTop">
+                   <h4> <p className="pcfFormTitle">PCF Org/Space /User Allocation Questionnaire</p></h4>
+                    <p className="pcfFormTitle">Select your requirement</p>
                     <AddOption option="Org for a practice/vertical" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
                     <AddOption option="New space" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
                     <AddOption option="User access to an existing space" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
                     <AddOption option="User access extension to an existing space" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
                     <AddOption option="Kubernetes cluster" optionClick={this.optionClick} optionUnClicked={this.optionUnClicked} />
-                    {this.state.option}
                 </div><br /><br />
                 {this.state.showNewSpace ?
                     <div>
@@ -65,13 +79,13 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
                     <button className="selectStyle" onClick={this.buttonClick}>New Space</button><br /><br />
                     {this.state.newSpace ? <NewSpace onUpdate={this.onUpdate} /> : null}
                 </div> */}<br/>
-                <div id="employeedetails">
+                <div id="employeedetails" className="borderTopBottom">
                     
                     <div id="employeeid"><label>Employee ID</label>
                     <input type="text"name="employeeid"  /></div>
                     <div id="employeename"><label>Employee Name</label>
                     <input type="text"name="employeename" /></div>
-                    <div id="businessjustification"><label>Enter BusinessJustification for the request</label>
+                    <div id="businessjustification"><label>Enter Business Justification for the request</label>
                     <textarea name="businessjustification" /></div>
                     <div id="supervisorid"><label>HCM Supervisor ID</label>
                     <input type="text"name="supervisorid" /></div>
@@ -86,6 +100,7 @@ export class PcfForm extends React.Component<PcfFormProps, PcfFormState> {
 }
 
 export interface PcfFormState {
+    requirementType: string;
     option: string;
     space: string;
     newSpace: boolean;

@@ -1,9 +1,9 @@
 .pcfFormTitle
 {
     color: #333333;
-    font-weight: 750;
+    font-weight: 600;
     margin: 20px auto;
-    display: inline-block;
+    /* display: inline-block; */
 }
 .pcfFormTitle2
 {
@@ -17,7 +17,7 @@
 .addEventTitle
 {
     color: #333333;
-    font-weight: 500;
+    font-weight: 300;
 }
 
 .noBorder
@@ -70,20 +70,24 @@
     display: inherit;
 }
 input[type="text"]{
-    border: 1px solid #9a9393;
+    border: 50% solid #9a9393;
 }
+
 textarea{
     height:100px;
-    border: 1px solid #9a9393;
+    border: 50% solid #9a9393;
 }
 #employeeid,#employeename,#businessjustification,#space
 {
     float: left;
     margin:5px;
+    margin-top: 30px;
 }
 #supervisorid,#supervisorname{
     float: left;
     margin:5px;
+    margin-top: 30px;
+    padding-bottom: 30px;
 }
 #button-bottom{
     margin-top:30px;
@@ -99,4 +103,17 @@ textarea{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     
+}
+.borderTopBottom{
+    border-top : 2px solid #f1efef;
+    margin-top: 30px;
+}
+.borderTop{
+    border-top: 2px solid #f1efef;
+}
+.paddingDiv{
+    padding-bottom: 30px;
+}
+body {
+       font-size: 16px; 
 }
